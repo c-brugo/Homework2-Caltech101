@@ -67,18 +67,28 @@ def make_dataset_caltech(
 ) -> List[Tuple[str, int]]:
     instances = []
 
+    
     root_directory = directory.split("/")[0]
+    #print(root_directory)
     root_directory = os.path.expanduser(root_directory)
+    #print(root_directory)
+
+    #print(directory)
     directory = os.path.expanduser(directory)
+    #print(directory)
 
     split_path = os.path.join(root_directory, split+".txt")
+    print(split_path)
     f = open(split_path, "r")
+    lines = f.read().splitlines()
     #for each line of the file, append an instance
-    for element in f:
+    for element in lines:
         if element.startswith("BACKGROUND_Google"):
             continue
         target_class = element.split("/")[0]
+        #print(target_class)
         class_index = class_to_idx[target_class]
+        #print(class_index)
         path = os.path.join(directory, element)
         if is_image_file(path):
             item = path, class_index
@@ -130,6 +140,7 @@ class Caltech(VisionDataset):
         Ensures:
             No class is a subdirectory of another.
         """
+        print(dir)
         classes = [d.name for d in os.scandir(dir) if d.is_dir()]
         classes.remove("BACKGROUND_Google")
         classes.sort()
