@@ -78,7 +78,7 @@ def make_dataset_caltech(
     #print(directory)
 
     split_path = os.path.join(root_directory, split+".txt")
-    print(split_path)
+    #print(split_path)
     f = open(split_path, "r")
     lines = f.read().splitlines()
     #for each line of the file, append an instance
@@ -140,7 +140,7 @@ class Caltech(VisionDataset):
         Ensures:
             No class is a subdirectory of another.
         """
-        print(dir)
+        #print(dir)
         classes = [d.name for d in os.scandir(dir) if d.is_dir()]
         classes.remove("BACKGROUND_Google")
         classes.sort()
