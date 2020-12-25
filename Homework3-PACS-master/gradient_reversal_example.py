@@ -32,7 +32,7 @@ class RandomNetworkWithReverseGrad(nn.Module):
         self.dann_classifier = nn.Sequential(...)
 
     def forward(self, x, alpha=None):
-        features = self.features
+        features = self.features(x)
         # Flatten the features:
         features = features.view(features.size(0), -1)
         # If we pass alpha, we can assume we are training the discriminator
