@@ -92,8 +92,10 @@ def make_dataset_pacs(
 
 
 class PACS(VisionDataset):
-    def __init__(self, root, transform=None, target_transform=None):
-        super(PACS, self).__init__(root, transform=transform, target_transform=target_transform)
+    def __init__(self, root, domain='photo', transform=None, target_transform=None):        
+        super(PACS, self).__init__(root+"/"+domain, transform=transform, target_transform=target_transform)
+
+        self.domain = domain # This defines the domain you are going to use
 
         classes, class_to_idx = self._find_classes(self.root)
         samples = make_dataset_pacs(self.root, class_to_idx)
