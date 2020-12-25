@@ -96,6 +96,6 @@ def dann(pretrained: bool = False, progress: bool = True, **kwargs: Any) -> DANN
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls['alexnet'],
                                               progress=progress)
-        model.load_state_dict(state_dict)
+        model.load_state_dict(state_dict, strict = False)
         model.domain = copy.deepcopy(model.classifier)
     return model
