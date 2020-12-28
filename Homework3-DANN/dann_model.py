@@ -80,10 +80,8 @@ class DANN_AlexNet(nn.Module):
         if alpha is not None:
             x = ReverseLayerF.apply(x, alpha)
             x = self.domain(x)
-            print(alpha)
         else:
             x = self.classifier(x)
-            print(alpha)
         return x
 
 
